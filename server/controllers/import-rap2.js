@@ -8,6 +8,11 @@ class importRap2Controller extends baseController {
     super(ctx);
   }
 
+  // for test
+  async getEcho(ctx) {
+    ctx.body = Object.assign(ctx.params, {time: Date.now()})
+  }
+
   /**
    * 
    * @param {*} ctx 
@@ -48,7 +53,7 @@ class importRap2Controller extends baseController {
     let {repositoryId, token, projectId, randomPath = false} = ctx.params
     
     let options = Object.assign(config.path, {
-      randomPath
+      randomPath: !!randomPath
     });
 
     let result = {have: 0, finish: 0, repeatFail: 0, otherFail: 0, cost: Date.now(), errors: []}

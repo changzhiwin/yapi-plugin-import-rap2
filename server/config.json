@@ -5,7 +5,7 @@
     "addInterface": "/api/interface/add"
   },
   "rap2": {
-    "host": "http://rap.tool.wezhuiyi.com:38080",
+    "host": "http://yourdomain.com",
     "repositoryDataPath": "/repository/get"
   },
   "path": {

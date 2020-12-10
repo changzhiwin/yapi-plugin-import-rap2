@@ -22,6 +22,11 @@ let routerConfig = {
       action: 'importYFromRap2',
       path: 'importy-from-rap2',
       method: 'get'
+    },
+    {
+      action: 'getEcho',
+      path: 'echo',
+      method: 'get'
     }
   ]
 };

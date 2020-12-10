@@ -1,6 +1,6 @@
-process.env.NODE_PATH = __dirname;
-
+const path = require('path');
 const Koa = require('koa');
+const koaStatic = require('koa-static');
 // const bodyParser = require('koa-bodyparser');
 const koaBody = require('koa-body');
 const router = require('./router.js');
@@ -18,6 +18,8 @@ app.use( async (ctx, next) => {
 app.use(koaBody({ multipart: true, jsonLimit: '2mb', formLimit: '1mb', textLimit: '1mb' }));
 app.use(router.routes());
 app.use(router.allowedMethods());
+
+app.use(koaStatic(path.resolve(__dirname, '../static'), { index: 'index.html', gzip: true }));
 
 const server = app.listen(3000);
 
