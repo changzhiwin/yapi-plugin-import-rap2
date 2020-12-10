@@ -4,8 +4,15 @@ const Koa = require('koa');
 // const bodyParser = require('koa-bodyparser');
 const koaBody = require('koa-body');
 const router = require('./router.js');
+const config = require('./config.json')
 
 const app = new Koa();
+
+// 注入config，使得在Control里面可以引用
+app.use( async (ctx, next) => {
+  ctx.config = config
+  await next();
+})
 
 // app.use(bodyParser({multipart: true}));
 app.use(koaBody({ multipart: true, jsonLimit: '2mb', formLimit: '1mb', textLimit: '1mb' }));

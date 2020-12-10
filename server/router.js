@@ -15,7 +15,12 @@ let routerConfig = {
   interface: [
     {
       action: 'getOneProjectData',
-      path: 'getOne_project_data',
+      path: 'get_one_project_data',
+      method: 'get'
+    },
+    {
+      action: 'importYFromRap2',
+      path: 'importy-from-rap2',
       method: 'get'
     }
   ]

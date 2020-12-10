@@ -26,6 +26,8 @@ exports.createAction = (router, baseurl, routerController, action, path, method,
     } catch (err) {
 
       ctx.body =  { code: -1, msg: '服务器出错...', error: err }
+
+      console.dir(err)
     }
   });
 };

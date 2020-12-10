@@ -1,0 +1,28 @@
+{
+  "name": "yapi-plugin-import-rap2",
+  "version": "1.0.0",
+  "description": "import data from rap2 # 解决rap2对open api支持有问题 需要修改源代码，来是的api可以访问。这里粗暴的使用去掉鉴权的方式，建议只在内网下操作。 路径：/app/routes/utils/access.js (需要进入docker容器) ``` const inTestMode = process.env.TEST_MODE === 'true'; class AccessUtils {     static async canUserAccess(accessType, curUserId, entityId) { +        return true; // no auth!!!         if (inTestMode) {             return true;         }                                                      if (accessType === ACCESS_TYPE.ORGANIZATION) {                                                      return await organization_1.default.canUserAccessOrganization(curUserId, entityId);         }  ```",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "koa": "^2.13.0",
+    "koa-body": "^4.2.0",
+    "koa-router": "^10.0.0",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/changzhiwin/yapi-plugin-import-rap2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/changzhiwin/yapi-plugin-import-rap2/issues"
+  },
+  "homepage": "https://github.com/changzhiwin/yapi-plugin-import-rap2#readme"
+}
