@@ -34,7 +34,7 @@
 
       <div class="jumbotron" style="margin-top: 2em;">
         <h1>Rap2迁移到Yapi</h1>
-        <p class="lead">轻而易举的把接口迁移到Yapi，更好的管理API文档。Yapi对前后端都支持的更友好些，关键这个迁移可以保证数据无损。</p>
+        <p class="lead">轻而易举的把接口迁移到Yapi，更好的管理API文档。Yapi对前后端都支持的更友好些，关键这个迁移可以保证数据无损，<a href="./example.html" target="_blank" >示例</a>。</p>
         <p><a class="btn btn-lg btn-default" href="https://github.com/changzhiwin/yapi-plugin-import-rap2" target="_blank" role="button"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>点个赞</a></p>
       </div>
 
@@ -63,11 +63,15 @@
             <div class="input-group">
 
               <button type="button" v-on:click="clear" class="btn btn-default btn-lg">
-                <span class="glyphicon glyphicon-scissors" aria-hidden="true"></span> 清空
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 清空
+              </button>
+
+              <button type="button" v-on:click="echo"  class="btn btn-default btn-lg" style="margin-left: 2em;">
+                <span class="glyphicon glyphicon-sort" aria-hidden="true"></span> 回显参数
               </button>
 
               <button type="button" v-on:click="fetchRepository"  class="btn btn-default btn-lg" style="margin-left: 2em;">
-                <span class="glyphicon glyphicon-send" aria-hidden="true"></span> 获取仓库数据
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 查看rap仓库
               </button>
 
               <button type="button" v-on:click="submit"  class="btn btn-default btn-lg" style="margin-left: 2em;">
@@ -87,11 +91,10 @@
         </div>
       </div>
 
-      <!--
+      
       <footer class="footer">
-        <p>&copy; 2020</p>
+        <p>&copy; changzhiwin@gmail.com</p>
       </footer>
-      -->
 
 
     </div> <!-- /container -->
@@ -118,21 +121,20 @@
         },
 
         fetchRepository: async function (event) {
-          this.loading = true;
-          let ret = await axios.get('/api/rap2/get_one_project_data', {
-            params: {
-              repositoryId: this.repositoryId
-            }
-          })
+          await this._sendRequest('/api/rap2/get_one_project_data')
+        },
 
-          this.logs = JSON.stringify(ret.data, 0, 4)
-          this.loading = false;
+        echo: async function () {
+          await this._sendRequest('/api/rap2/echo')
         },
 
         submit: async function (event) {
-          //console.log(`[${this.token}] [${this.projectId}] [${this.repositoryId}]`)
+          await this._sendRequest('/api/rap2/importy-from-rap2')
+        },
+
+        _sendRequest: async function(path) {
           this.loading = true;
-          let ret = await axios.get('/api/rap2/echo', {
+          let ret = await axios.get(path, {
             params: {
               token: this.token,
               projectId: this.projectId,
@@ -142,7 +144,6 @@
 
           this.logs = JSON.stringify(ret.data, 0, 4)
           this.loading = false;
-
         }
       }
     })

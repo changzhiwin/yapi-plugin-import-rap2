@@ -5,7 +5,7 @@
     "addInterface": "/api/interface/add"
   },
   "rap2": {
-    "host": "http://yourdomain.com",
+    "host": "http://rap.your.domain.com:38080",
     "repositoryDataPath": "/repository/get"
   },
   "path": {
