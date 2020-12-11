@@ -6,6 +6,7 @@
 - 1，启动服务
 ```
 npm install
+修改config.json里面的配置：rap2.host
 node server/app.js
 ```
 
@@ -18,6 +19,10 @@ projectId: yapi新建一个项目后的项目id（需要新建一个项目）
 token: yapi项目的open api访问的token（`设置` -> `token配置`）
 randomPath: 可选，用于处理原来rap2仓库里面存着重复路径的情况，作用就是在路径后面加个随机query
 ```
+
+- 3，可以访问界面，实现迁移
+`http://127.0.0.1:3000`
+如果有重复路径的情况，还是用上面这个方法吧
 
 
 # 解决rap2的open api不能访问
@@ -35,3 +40,6 @@ class AccessUtils {
             return await organization_1.default.canUserAccessOrganization(curUserId, entityId);
         } 
 ```
+
+# 迁移有误，怎么办？
+很简单，把yapi新建的这个项目删除，重新迁移即可。操作路径：[项目] -> [设置] -> [项目配置] -> [危险操作] -> [删除]
