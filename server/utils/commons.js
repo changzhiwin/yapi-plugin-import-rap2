@@ -21,7 +21,8 @@ exports.createAction = (router, baseurl, routerController, action, path, method,
       */
 
       // 执行
-      await inst[action].call(inst, ctx);
+      // await inst[action].call(inst, ctx);
+      await inst[action](ctx) // 这两个方法不是等价的吗？
 
     } catch (err) {
 

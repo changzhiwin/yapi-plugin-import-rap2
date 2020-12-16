@@ -23,6 +23,7 @@ function hackNumberType(target) {
 
 // 处理url不标准的情况
 function fixRequestPath(path, options) {
+  console.log('----------> path = ', path)
   path = path.replace(/\$/g, "") // case: /v1/aiforce/${product}_business
   path = path.replace(/\*/g, "-") // 有*号的处理，case: /admin/*
   path = path.replace("/%20", "") // case: /%20/api/category
@@ -55,6 +56,10 @@ function fixRequestPath(path, options) {
     path = purl.pathname + ( (purl.search)? purl.search : "" )
   }
 
+  path = path.replace("%7B", "{") 
+  path = path.replace("%7D", "}") 
+
+  console.log('<---------- path = ', path)
   return {path, desc}
 }
 
@@ -192,6 +197,13 @@ function fromRequestData(request) {
       example: ''
     })
   })
+
+  /*
+  "name": "question_rule_category_id",
+  "rule": "int(11)",
+  "value": "AUTO_INCREMENT",
+  "description": "PRIMARY KEY",
+  */
 
   query.forEach((item) => {
     req_query.push({

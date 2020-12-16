@@ -82,6 +82,8 @@ class importRap2Controller extends baseController {
       let cat = await this.createCat({desc: description, name})
 
       if (cat.errcode !== 0) {
+        console.log('--------------')
+        console.log(cat)
         result.errors.push(`create [${name}] Cat error, [${cat.errcode}] [${cat.errmsg}]`)
         // 分类创建失败，只能从下一个分类再开始
         continue;
@@ -95,7 +97,10 @@ class importRap2Controller extends baseController {
         let path = ifs.url || options.defaultPath;
 
         let tempRet = convert.fixRequestPath(path, options)
-        let addDesc = `迁移前url地址：[${ifs.url}]。${tempRet.desc}。` // url万一改错了，备份到备注里面
+        let addDesc = `迁移前url地址：[${ifs.url}]。` // url万一改错了，备份到备注里面
+        if (tempRet.desc) {
+          addDesc += tempRet.desc
+        }
         path = tempRet.path
 
         //console.log(`[${md.name}], [${ifs.name}], [${ifs.url}], [${path}] [${ifs.properties.length}]`)
@@ -105,6 +110,14 @@ class importRap2Controller extends baseController {
 
         // 新增接口
         let jsonData = convert.changeInterfaceFromRap2Yapi(ifs);
+
+        if (jsonData.req_body_other && jsonData.req_body_other.length > 1) {
+          jsonData['method'] = "POST"
+        }
+
+        console.log('jsonData = ')
+        console.log(JSON.stringify(jsonData))
+        
         let retIfs = await this.creatInterface(Object.assign(jsonData, {
           "catid": catId
         }))

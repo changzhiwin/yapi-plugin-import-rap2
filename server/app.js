@@ -6,6 +6,11 @@ const koaBody = require('koa-body');
 const router = require('./router.js');
 const config = require('./config.json')
 
+if (!config || !config.yapi || !config.rap2 || !config.yapi.host.length || !config.rap2.host.length) {
+  console.error('[ERROR] config.json must have yapi and rap2 host. [config.yapi.host] [config.rap2.host]')
+  return;
+}
+
 const app = new Koa();
 
 // 注入config，使得在Control里面可以引用

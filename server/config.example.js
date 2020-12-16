@@ -1,11 +1,11 @@
 {
   "yapi": {
-    "host": "http://172.16.30.75:3000",
+    "host": "http://yapi.yourdomain.com",
     "addCatpath": "/api/interface/add_cat",
     "addInterface": "/api/interface/add"
   },
   "rap2": {
-    "host": "http://rap.your.domain.com:38080",
+    "host": "http://rap2.yourdomain.com:38080",
     "repositoryDataPath": "/repository/get"
   },
   "path": {
