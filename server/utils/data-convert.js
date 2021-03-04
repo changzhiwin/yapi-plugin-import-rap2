@@ -214,7 +214,8 @@ function fromRequestData(request) {
     })
   })
 
-  req_body_other = JSON.stringify( arrayToJson(body) )
+  // fix: 所有迁移的接口都是post；有body参数才需要填充
+  body.length && ( req_body_other = JSON.stringify( arrayToJson(body) ) )
 
   return {
     req_headers,

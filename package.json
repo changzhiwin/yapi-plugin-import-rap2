@@ -31,10 +31,10 @@
         "refactor",
         "opti"
       ],
-      "warnOnFail": true,
+      "warnOnFail": false,
       "maxSubjectLength": 90,
       "subjectPattern": ".+",
-      "subjectPatternErrorMsg": "请输入message1信息!",
+      "subjectPatternErrorMsg": "请输入message信息!",
       "helpMessage": "Commit message 格式错误， http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html"
     }
   },
